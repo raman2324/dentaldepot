@@ -29,14 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Dental Depot" },
+      { name: "description", content: "A modern, patient-friendly website for a multi-location dental clinic, prioritizing clear information and easy appointment booking." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Dental Depot" },
+      { property: "og:description", content: "A modern, patient-friendly website for a multi-location dental clinic, prioritizing clear information and easy appointment booking." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Dental Depot" },
+      { name: "twitter:description", content: "A modern, patient-friendly website for a multi-location dental clinic, prioritizing clear information and easy appointment booking." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7b976375-72cf-4577-a56c-ce4883bbf345/id-preview-25d01c61--1d1b0c94-43bc-4245-a700-4b57ba916fab.lovable.app-1777298773283.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7b976375-72cf-4577-a56c-ce4883bbf345/id-preview-25d01c61--1d1b0c94-43bc-4245-a700-4b57ba916fab.lovable.app-1777298773283.png" },
     ],
     links: [
       {
