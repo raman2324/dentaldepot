@@ -9,38 +9,258 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamRouteImport } from './routes/team'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as NewPatientsRouteImport } from './routes/new-patients'
+import { Route as LocationsRouteImport } from './routes/locations'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BookRouteImport } from './routes/book'
+import { Route as AccessibilityRouteImport } from './routes/accessibility'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TeamDoctorRouteImport } from './routes/team.$doctor'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewPatientsRoute = NewPatientsRouteImport.update({
+  id: '/new-patients',
+  path: '/new-patients',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsRoute = LocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccessibilityRoute = AccessibilityRouteImport.update({
+  id: '/accessibility',
+  path: '/accessibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamDoctorRoute = TeamDoctorRouteImport.update({
+  id: '/$doctor',
+  path: '/$doctor',
+  getParentRoute: () => TeamRoute,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const LocationsSlugRoute = LocationsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => LocationsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accessibility': typeof AccessibilityRoute
+  '/book': typeof BookRoute
+  '/contact': typeof ContactRoute
+  '/locations': typeof LocationsRouteWithChildren
+  '/new-patients': typeof NewPatientsRoute
+  '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/team': typeof TeamRouteWithChildren
+  '/locations/$slug': typeof LocationsSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/team/$doctor': typeof TeamDoctorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accessibility': typeof AccessibilityRoute
+  '/book': typeof BookRoute
+  '/contact': typeof ContactRoute
+  '/locations': typeof LocationsRouteWithChildren
+  '/new-patients': typeof NewPatientsRoute
+  '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/team': typeof TeamRouteWithChildren
+  '/locations/$slug': typeof LocationsSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/team/$doctor': typeof TeamDoctorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/accessibility': typeof AccessibilityRoute
+  '/book': typeof BookRoute
+  '/contact': typeof ContactRoute
+  '/locations': typeof LocationsRouteWithChildren
+  '/new-patients': typeof NewPatientsRoute
+  '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRoute
+  '/services': typeof ServicesRouteWithChildren
+  '/team': typeof TeamRouteWithChildren
+  '/locations/$slug': typeof LocationsSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/team/$doctor': typeof TeamDoctorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/accessibility'
+    | '/book'
+    | '/contact'
+    | '/locations'
+    | '/new-patients'
+    | '/privacy'
+    | '/resources'
+    | '/services'
+    | '/team'
+    | '/locations/$slug'
+    | '/services/$slug'
+    | '/team/$doctor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/accessibility'
+    | '/book'
+    | '/contact'
+    | '/locations'
+    | '/new-patients'
+    | '/privacy'
+    | '/resources'
+    | '/services'
+    | '/team'
+    | '/locations/$slug'
+    | '/services/$slug'
+    | '/team/$doctor'
+  id:
+    | '__root__'
+    | '/'
+    | '/accessibility'
+    | '/book'
+    | '/contact'
+    | '/locations'
+    | '/new-patients'
+    | '/privacy'
+    | '/resources'
+    | '/services'
+    | '/team'
+    | '/locations/$slug'
+    | '/services/$slug'
+    | '/team/$doctor'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccessibilityRoute: typeof AccessibilityRoute
+  BookRoute: typeof BookRoute
+  ContactRoute: typeof ContactRoute
+  LocationsRoute: typeof LocationsRouteWithChildren
+  NewPatientsRoute: typeof NewPatientsRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ResourcesRoute: typeof ResourcesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
+  TeamRoute: typeof TeamRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new-patients': {
+      id: '/new-patients'
+      path: '/new-patients'
+      fullPath: '/new-patients'
+      preLoaderRoute: typeof NewPatientsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations': {
+      id: '/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof LocationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accessibility': {
+      id: '/accessibility'
+      path: '/accessibility'
+      fullPath: '/accessibility'
+      preLoaderRoute: typeof AccessibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +268,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team/$doctor': {
+      id: '/team/$doctor'
+      path: '/$doctor'
+      fullPath: '/team/$doctor'
+      preLoaderRoute: typeof TeamDoctorRouteImport
+      parentRoute: typeof TeamRoute
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/locations/$slug': {
+      id: '/locations/$slug'
+      path: '/$slug'
+      fullPath: '/locations/$slug'
+      preLoaderRoute: typeof LocationsSlugRouteImport
+      parentRoute: typeof LocationsRoute
+    }
   }
 }
 
+interface LocationsRouteChildren {
+  LocationsSlugRoute: typeof LocationsSlugRoute
+}
+
+const LocationsRouteChildren: LocationsRouteChildren = {
+  LocationsSlugRoute: LocationsSlugRoute,
+}
+
+const LocationsRouteWithChildren = LocationsRoute._addFileChildren(
+  LocationsRouteChildren,
+)
+
+interface ServicesRouteChildren {
+  ServicesSlugRoute: typeof ServicesSlugRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesSlugRoute: ServicesSlugRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
+interface TeamRouteChildren {
+  TeamDoctorRoute: typeof TeamDoctorRoute
+}
+
+const TeamRouteChildren: TeamRouteChildren = {
+  TeamDoctorRoute: TeamDoctorRoute,
+}
+
+const TeamRouteWithChildren = TeamRoute._addFileChildren(TeamRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccessibilityRoute: AccessibilityRoute,
+  BookRoute: BookRoute,
+  ContactRoute: ContactRoute,
+  LocationsRoute: LocationsRouteWithChildren,
+  NewPatientsRoute: NewPatientsRoute,
+  PrivacyRoute: PrivacyRoute,
+  ResourcesRoute: ResourcesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
+  TeamRoute: TeamRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
