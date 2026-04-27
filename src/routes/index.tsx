@@ -1,26 +1,33 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, BadgeDollarSign, CalendarDays, CheckCircle2, HeartHandshake, ShieldCheck, Sparkles, Star } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { BookCTA, ClickToCall, DoctorCard, EmergencyBand, InsuranceGrid, LocationCard, PageShell, ReviewCard, ServiceCard, TrustStrip } from "@/components/dental/shared";
+import { doctors, locations, practice, reviews, services } from "@/data/dental";
 
 export const Route = createFileRoute("/")({
+  head: () => ({ meta: [
+    { title: `${practice.name} | Family Dentist in ${practice.city}` },
+    { name: "description", content: "Warm family dentistry with same-day emergency care, clear pricing, and online booking." },
+    { property: "og:title", content: `${practice.name} | Family Dentist in ${practice.city}` },
+    { property: "og:description", content: "Gentle dental care for every smile in your family." },
+  ] }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+function Index() {
+  return <PageShell><Hero /><TrustStrip /><ServicesSection /><NewPatientBand /><TeamSection /><WhySection /><ReviewsSection /><LocationsSection /><InsuranceSection /><ResourcesSection /><EmergencyBand /></PageShell>;
 }
 
-function Index() {
-  return <PlaceholderIndex />;
+function Hero() {
+  return <section className="relative overflow-hidden py-12 md:min-h-[76vh] md:py-20"><div className="absolute right-0 top-16 -z-10 size-72 rounded-full bg-secondary blur-3xl ambient-shift" aria-hidden="true" /><div className="container-care grid items-center gap-10 lg:grid-cols-[1fr_0.9fr]"><div><p className="eyebrow">Family Dentistry in {practice.city}</p><h1 className="mt-5 max-w-3xl text-5xl font-extrabold leading-[1.05] text-foreground md:text-7xl">{practice.tagline}</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">We're welcoming new patients, same-day emergencies, and most insurance plans — with clear costs before treatment starts.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><BookCTA /><ClickToCall /></div><div className="mt-8 flex flex-wrap gap-4 text-sm font-bold text-muted-foreground"><span className="flex items-center gap-2"><CheckCircle2 className="size-5 text-primary" />No account needed</span><span className="flex items-center gap-2"><ShieldCheck className="size-5 text-primary" />HIPAA-aware intake</span><span className="flex items-center gap-2"><Star className="size-5 text-accent" />4.9 Google rating</span></div></div><div className="relative"><div className="hero-photo min-h-[460px] rounded-3xl shadow-lift" role="img" aria-label="Naturally lit dental operatory with a dentist speaking kindly with a patient" /><div className="soft-card absolute -bottom-6 left-4 right-4 rounded-2xl p-5 md:left-auto md:w-80"><p className="font-extrabold">4.9 ★ · 1,247 Google Reviews</p><div className="mt-4 space-y-3 text-sm text-muted-foreground"><p>Same-day emergencies welcome</p><p>Most insurance accepted</p><p className="font-extrabold text-primary">Next available: Today 3:30 PM</p></div></div></div></div></section>;
 }
+
+function ServicesSection() { return <section className="container-care py-20"><p className="eyebrow">What we offer</p><h2 className="mt-3 max-w-2xl text-4xl font-extrabold md:text-5xl">Care for every stage of life.</h2><div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">{services.map((service)=><ServiceCard key={service.slug} service={service}/>)}</div></section>; }
+function NewPatientBand() { return <section className="bg-surface py-20 text-surface-foreground"><div className="container-care grid gap-8 lg:grid-cols-[1fr_0.72fr]"><div><p className="eyebrow">New patients</p><h2 className="mt-3 text-4xl font-extrabold md:text-5xl">New here? Welcome.</h2><p className="mt-5 max-w-2xl text-lg leading-8">Your first visit is about understanding your smile, your goals, and your budget. We'll walk through every cost before treatment — no surprise pricing.</p><div className="mt-8 grid gap-4 sm:grid-cols-3">{["No insurance required to book", "We'll verify benefits for you", "Clear plan before treatment"].map((item)=><p key={item} className="flex gap-3 font-bold"><CheckCircle2 className="size-5 shrink-0 text-primary" />{item}</p>)}</div></div><div className="soft-card rounded-3xl p-8"><p className="eyebrow">New patient offer</p><h3 className="mt-3 text-4xl font-extrabold">$99 first visit</h3><p className="mt-4 leading-7 text-muted-foreground">Includes exam, X-rays, and cleaning when clinically appropriate.</p><BookCTA label="Book first visit" className="mt-7" /><p className="mt-4 text-sm text-muted-foreground">Offer varies by insurance and periodontal needs.</p></div></div></section>; }
+function TeamSection() { return <section className="container-care py-20"><p className="eyebrow">Our team</p><h2 className="mt-3 text-4xl font-extrabold md:text-5xl">Meet your dentists.</h2><div className="mt-10 grid gap-6 md:grid-cols-3">{doctors.map((doctor)=><DoctorCard key={doctor.slug} doctor={doctor}/>)}</div></section>; }
+function WhySection() { const items=[['Gentle care guarantee',HeartHandshake],['Transparent pricing',BadgeDollarSign],['Sedation options available',Sparkles],['Same-day emergency slots',CalendarDays]]; return <section className="bg-card py-16"><div className="container-care grid gap-5 md:grid-cols-4">{items.map(([label,Icon])=>{const C=Icon as typeof HeartHandshake; return <div key={label as string} className="rounded-2xl border p-6"><C className="size-7 text-primary" strokeWidth={1.5}/><h3 className="mt-4 text-lg font-extrabold">{label as string}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">Plain-spoken care that makes visits easier.</p></div>})}</div></section>; }
+function ReviewsSection() { return <section className="container-care py-20"><p className="eyebrow">Reviews</p><div className="flex flex-col justify-between gap-4 md:flex-row md:items-end"><h2 className="max-w-xl text-4xl font-extrabold md:text-5xl">What our patients say.</h2><a href="https://google.com" className="font-extrabold text-primary">4.9 out of 5 — see all on Google <ArrowRight className="inline size-4" /></a></div><div className="mt-10 grid gap-6 md:grid-cols-3">{reviews.map((review)=><ReviewCard key={review.name} review={review}/>)}</div></section>; }
+function LocationsSection() { return <section className="bg-surface py-20"><div className="container-care"><p className="eyebrow">Locations</p><h2 className="mt-3 text-4xl font-extrabold md:text-5xl">Conveniently close.</h2><div className="mt-10 grid gap-6 lg:grid-cols-3">{locations.map((location)=><LocationCard key={location.slug} location={location}/>)}</div></div></section>; }
+function InsuranceSection() { return <section className="container-care grid gap-10 py-20 lg:grid-cols-2"><div><p className="eyebrow">Insurance & affordability</p><h2 className="mt-3 text-4xl font-extrabold md:text-5xl">We’ll help you make sense of costs.</h2><p className="mt-5 text-lg leading-8 text-muted-foreground">Don't see yours? We're out-of-network friendly — call and we'll verify before your visit.</p><InsuranceGrid /></div><div className="soft-card rounded-3xl p-8"><h3 className="text-2xl font-extrabold">Flexible ways to pay</h3><p className="mt-4 leading-8 text-muted-foreground">CareCredit, in-house membership plans, and payment plans are available. We never want cost confusion to be the reason you delay care.</p><Button asChild variant="outline" className="mt-6"><Link to="/contact">Ask about coverage</Link></Button></div></section>; }
+function ResourcesSection() { const cards=['New Patient Forms','FAQs','Dental emergencies: what to do tonight']; return <section className="container-care py-20 pt-0"><p className="eyebrow">Patient resources</p><h2 className="mt-3 text-4xl font-extrabold">Helpful before you arrive.</h2><div className="mt-8 grid gap-5 md:grid-cols-3">{cards.map(card=><Link key={card} to="/resources" className="soft-card lift-card rounded-2xl p-7"><h3 className="text-xl font-extrabold">{card}</h3><p className="mt-3 text-muted-foreground">Clear answers without dental jargon.</p></Link>)}</div></section>; }
