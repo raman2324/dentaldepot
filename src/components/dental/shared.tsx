@@ -3,6 +3,7 @@ import { CalendarDays, Check, ChevronRight, Clock, Languages, MapPin, Menu, Phon
 
 import { Button } from "@/components/ui/button";
 import { practice, services, doctors, locations, reviews, carriers, navItems } from "@/data/dental";
+import locationOfficeImage from "@/assets/dental-location-office.jpg";
 
 export function SkipToContent() {
   return <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-xl focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-foreground">Skip to main content</a>;
@@ -52,7 +53,7 @@ export function DoctorCard({ doctor }: { doctor: (typeof doctors)[number] }) {
 }
 
 export function LocationCard({ location }: { location: (typeof locations)[number] }) {
-  return <article className="soft-card lift-card rounded-2xl p-7"><div className="mb-5 h-36 rounded-2xl bg-surface" role="img" aria-label={`${location.name} clinic exterior photo placeholder`} /><p className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-sm font-bold text-secondary-foreground"><Clock className="size-4" />{location.today}</p><h3 className="mt-4 text-2xl font-extrabold">{location.name}</h3><p className="mt-3 flex gap-2 leading-7 text-muted-foreground"><MapPin className="mt-1 size-4 shrink-0 text-primary" />{location.address}</p><p className="mt-2 text-muted-foreground">{location.hours}</p><div className="mt-6 flex flex-wrap gap-3"><Button asChild variant="outline"><a href={`https://maps.google.com/?q=${encodeURIComponent(location.address)}`}>Get directions</a></Button><Button asChild><Link to="/book">Book here</Link></Button></div></article>;
+  return <article className="soft-card lift-card overflow-hidden rounded-2xl"><img src={locationOfficeImage} alt={`${location.name} Hearthside Family Dental office exterior`} width={1400} height={900} loading="lazy" className="h-44 w-full object-cover" /><div className="p-7"><p className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-sm font-bold text-secondary-foreground"><Clock className="size-4" />{location.today}</p><h3 className="mt-4 text-2xl font-extrabold">{location.name}</h3><p className="mt-3 flex gap-2 leading-7 text-muted-foreground"><MapPin className="mt-1 size-4 shrink-0 text-primary" />{location.address}</p><p className="mt-2 text-muted-foreground">{location.hours}</p><div className="mt-6 flex flex-wrap gap-3"><Button asChild variant="outline"><a href={`https://maps.google.com/?q=${encodeURIComponent(location.address)}`}>Get directions</a></Button><Button asChild><Link to="/book">Book here</Link></Button></div></div></article>;
 }
 
 export function ReviewCard({ review }: { review: (typeof reviews)[number] }) {
