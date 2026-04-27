@@ -4,6 +4,15 @@ import { CalendarDays, Check, ChevronRight, Clock, Languages, MapPin, Menu, Phon
 import { Button } from "@/components/ui/button";
 import { practice, services, doctors, locations, reviews, carriers, navItems } from "@/data/dental";
 import locationOfficeImage from "@/assets/dental-location-office.jpg";
+import mayaPatelImage from "@/assets/doctor-maya-patel.jpg";
+import jonathanReedImage from "@/assets/doctor-jonathan-reed.jpg";
+import sofiaMoralesImage from "@/assets/doctor-sofia-morales.jpg";
+
+const doctorImages: Record<string, string> = {
+  "maya-patel": mayaPatelImage,
+  "jonathan-reed": jonathanReedImage,
+  "sofia-morales": sofiaMoralesImage,
+};
 
 export function SkipToContent() {
   return <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-xl focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-foreground">Skip to main content</a>;
@@ -49,7 +58,7 @@ export function ServiceCard({ service }: { service: (typeof services)[number] })
 }
 
 export function DoctorCard({ doctor }: { doctor: (typeof doctors)[number] }) {
-  return <article className="soft-card lift-card overflow-hidden rounded-2xl"><div className="grid aspect-square place-items-center bg-surface text-5xl font-extrabold text-primary" role="img" aria-label={`Portrait placeholder for ${doctor.name}`}>{doctor.initials}</div><div className="p-7"><p className="text-sm font-bold text-primary">{doctor.specialty}</p><h3 className="mt-1 text-xl font-extrabold">{doctor.name}, {doctor.credentials}</h3><p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground"><Languages className="size-4" />{doctor.languages}</p><p className="mt-3 leading-7 text-muted-foreground">{doctor.bio}</p><Link to="/team/$doctor" params={{ doctor: doctor.slug }} className="mt-5 inline-flex min-h-11 items-center gap-1 font-extrabold text-primary">Book with {doctor.name.split(" ")[1]} <ChevronRight className="size-4" /></Link></div></article>;
+  return <article className="soft-card lift-card overflow-hidden rounded-2xl"><img src={doctorImages[doctor.slug]} alt={`Portrait of ${doctor.name}`} width={960} height={960} loading="lazy" className="aspect-square w-full object-cover" /><div className="p-7"><p className="text-sm font-bold text-primary">{doctor.specialty}</p><h3 className="mt-1 text-xl font-extrabold">{doctor.name}, {doctor.credentials}</h3><p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground"><Languages className="size-4" />{doctor.languages}</p><p className="mt-3 leading-7 text-muted-foreground">{doctor.bio}</p><Link to="/team/$doctor" params={{ doctor: doctor.slug }} className="mt-5 inline-flex min-h-11 items-center gap-1 font-extrabold text-primary">Book with {doctor.name.split(" ")[1]} <ChevronRight className="size-4" /></Link></div></article>;
 }
 
 export function LocationCard({ location }: { location: (typeof locations)[number] }) {
