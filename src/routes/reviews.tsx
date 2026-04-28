@@ -1,0 +1,6 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Star } from "lucide-react";
+import { PageShell, ProductGlyph } from "@/components/dental/shared";
+import { reviews, store } from "@/data/dental";
+export const Route = createFileRoute("/reviews")({ head: () => ({ meta: [{ title: "Verified Product Reviews | Dental Depot" }, { name: "description", content: "Verified buyer reviews for Dental Depot oral-care products." }, { property: "og:title", content: "Verified Product Reviews" }, { property: "og:description", content: "Verified buyer reviews for oral-care products." }] }), component: Page });
+function Page() { return <PageShell><section className="container-care py-14"><p className="eyebrow">Reviews</p><h1 className="mt-3 text-5xl font-black">4.7 / 5 from {store.reviewCount} product reviews.</h1><div className="mt-10 grid gap-5 md:grid-cols-3">{reviews.map((review) => <article key={review.name} className="soft-card rounded-lg p-6"><ProductGlyph type={review.art} className="size-24" /><p className="mt-4 flex text-[var(--warn-600)]">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-4 fill-current" />)}</p><blockquote className="mt-4 leading-7 text-foreground">“{review.quote}”</blockquote><p className="mt-5 font-black text-foreground">{review.name} · {review.city}</p></article>)}</div></section></PageShell>; }

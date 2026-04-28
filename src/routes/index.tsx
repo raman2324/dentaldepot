@@ -34,7 +34,7 @@ function FeaturedProducts() {
   return <section className="container-care py-16"><p className="eyebrow">Top picks</p><h2 className="mt-3 text-4xl font-black md:text-5xl">What patients are reordering this month.</h2><ProductRail products={featuredProducts} /></section>;
 }
 
-function ProductRail({ products: items }: { products: typeof products }) {
+function ProductRail({ products: items }: { products: readonly (typeof products)[number][] }) {
   return <div className="mt-9 grid auto-cols-[78%] grid-flow-col gap-4 overflow-x-auto pb-4 [scroll-snap-type:x_mandatory] sm:auto-cols-[42%] lg:grid-flow-row lg:grid-cols-4 lg:overflow-visible xl:grid-cols-6">{items.map((product) => <div key={product.slug} className="[scroll-snap-align:start]"><ProductCard product={product} /></div>)}</div>;
 }
 
