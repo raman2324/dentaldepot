@@ -1,0 +1,11 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { FreeShippingProgress, PageShell, ProductGlyph, QuantitySelector } from "@/components/dental/shared";
+import { products } from "@/data/dental";
+
+export const Route = createFileRoute("/cart")({
+  head: () => ({ meta: [{ title: "Cart | Dental Depot" }, { name: "description", content: "Review your Dental Depot cart and free-shipping progress." }, { property: "og:title", content: "Cart | Dental Depot" }, { property: "og:description", content: "Review your Dental Depot cart." }] }),
+  component: Page,
+});
+function Page() { const items = [products[2], products[4]]; const total = items.reduce((sum, item) => sum + item.price, 0); return <PageShell><section className="container-care grid gap-8 py-14 lg:grid-cols-[1fr_0.42fr]"><div><p className="eyebrow">Cart</p><h1 className="mt-3 text-5xl font-black">Review your order.</h1><div className="mt-8 divide-y rounded-lg border bg-card">{items.map((item) => <article key={item.slug} className="grid gap-4 p-5 sm:grid-cols-[96px_1fr_auto]"><ProductGlyph type={item.art} /><div><h2 className="font-black text-foreground">{item.name}</h2><p className="mt-1 text-sm font-bold text-muted-foreground">{item.brand}</p><p className="mt-2 text-sm font-black text-[var(--success-700)]">{item.stock}</p><div className="mt-3"><QuantitySelector /></div></div><div className="flex items-start justify-between gap-4 sm:block sm:text-right"><p className="text-xl font-black text-foreground">${item.price.toFixed(2)}</p><button className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-muted-foreground"><Trash2 className="size-4" />Remove</button></div></article>)}</div></div><aside className="h-fit rounded-lg border bg-card p-6 shadow-soft"><FreeShippingProgress amount={total} /><div className="mt-6 space-y-3 text-sm font-bold"><p className="flex justify-between"><span>Subtotal</span><span>${total.toFixed(2)}</span></p><p className="flex justify-between"><span>Estimated shipping</span><span>Calculated at checkout</span></p></div><Button asChild size="lg" className="mt-6 w-full"><Link to="/checkout">Checkout</Link></Button></aside></section></PageShell>; }

@@ -1,0 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageShell } from "@/components/dental/shared";
+import { articles } from "@/data/dental";
+export const Route = createFileRoute("/dental-information")({ head: () => ({ meta: [{ title: "Dental Information | Dental Depot" }, { name: "description", content: "Plain-English oral-care product guides from Dental Depot." }, { property: "og:title", content: "Dental Information" }, { property: "og:description", content: "Plain-English oral-care product guides." }] }), component: Page });
+function Page() { return <PageShell><section className="container-care py-14"><p className="eyebrow">Dental information</p><h1 className="mt-3 text-5xl font-black md:text-6xl">Product guides without the fluff.</h1><div className="mt-10 grid gap-5 md:grid-cols-3">{articles.map((article) => <article key={article.title} className="soft-card rounded-lg p-6"><h2 className="text-2xl font-black text-foreground">{article.title}</h2><p className="mt-3 leading-7 text-muted-foreground">{article.dek}</p></article>)}</div></section></PageShell>; }

@@ -1,0 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageShell } from "@/components/dental/shared";
+import { faqs } from "@/data/dental";
+export const Route = createFileRoute("/faq")({ head: () => ({ meta: [{ title: "Help & FAQ | Dental Depot" }, { name: "description", content: "Shipping, returns, product sourcing, and customer-care answers." }, { property: "og:title", content: "Help & FAQ" }, { property: "og:description", content: "Dental Depot customer-care answers." }] }), component: Page });
+function Page() { return <PageShell><section className="container-care max-w-4xl py-14"><p className="eyebrow">Help & FAQ</p><h1 className="mt-3 text-5xl font-black">How can we help?</h1><div className="mt-8 divide-y rounded-lg border bg-card">{faqs.map(([question, answer]) => <details key={question} className="p-5"><summary className="cursor-pointer font-black text-foreground">{question}</summary><p className="mt-3 leading-7 text-muted-foreground">{answer}</p></details>)}</div></section></PageShell>; }
