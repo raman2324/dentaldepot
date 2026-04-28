@@ -9,7 +9,7 @@ import {
   FreeShippingProgress,
   PageShell,
   ProductCard,
-  ProductGlyph,
+  ProductImage,
   SignupForm,
   TrustTiles,
 } from "@/components/dental/shared";
@@ -333,7 +333,11 @@ function ReviewsSection() {
         {reviews.map((review) => (
           <article key={review.name} className="soft-card rounded-lg p-6">
             <div className="flex gap-4">
-              <ProductGlyph type={review.art} className="size-20 shrink-0" />
+              <ProductImage
+                type={review.art}
+                alt={`${review.product} reviewed by a verified buyer`}
+                className="size-20 shrink-0"
+              />
               <div>
                 <p className="font-black text-foreground">{review.product}</p>
                 <p className="mt-1 flex text-[var(--warn-600)]" aria-label="5 star review">
