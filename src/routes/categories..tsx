@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, ProductCard } from "@/components/dental/shared";
 import { categories, products } from "@/data/dental";
 
-export const Route = createFileRoute("/categories/$slug")({
+export const Route = createFileRoute("/categories/")({
   head: ({ params }) => { const category = categories.find((item) => item.slug === params.slug); return { meta: [{ title: `${category?.name ?? "Category"} | Dental Depot` }, { name: "description", content: `Shop ${category?.name ?? "oral-care products"} at Dental Depot.` }, { property: "og:title", content: category?.name ?? "Dental Depot Category" }, { property: "og:description", content: "Brand-name products recommended by dentists." }] }; },
   component: Page,
 });
