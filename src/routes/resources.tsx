@@ -1,9 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/dental/shared";
-
-export const Route = createFileRoute("/resources")({
-  head: () => ({ meta: [{ title: "Patient Resources | Hearthside Family Dental" }, { name: "description", content: "Forms, FAQs, and dental education for patients." }, { property: "og:title", content: "Patient Resources" }, { property: "og:description", content: "Forms, FAQs, and dental education for patients." }] }),
-  component: Page,
-});
-
-function Page() { return <PageShell><section className="container-care py-16"><p className="eyebrow">Resources</p><h1 className="mt-3 text-5xl font-extrabold md:text-6xl">Helpful before you arrive.</h1><div className="mt-10 grid gap-5 md:grid-cols-3">{["New Patient Forms","FAQs","Education articles"].map((item)=><article key={item} className="soft-card rounded-2xl p-7"><h2 className="text-2xl font-extrabold">{item}</h2><p className="mt-3 text-muted-foreground">Plain-spoken answers for easier visits.</p></article>)}</div></section></PageShell>; }
+import { articles } from "@/data/dental";
+export const Route = createFileRoute("/resources")({ head: () => ({ meta: [{ title: "Oral-Care Resources | Dental Depot" }, { name: "description", content: "Product-focused oral-care resources from Dental Depot." }, { property: "og:title", content: "Oral-Care Resources" }, { property: "og:description", content: "Product-focused oral-care resources." }] }), component: Page });
+function Page() { return <PageShell><section className="container-care py-14"><p className="eyebrow">Resources</p><h1 className="mt-3 text-5xl font-black">Oral-care product guides.</h1><div className="mt-10 grid gap-5 md:grid-cols-3">{articles.map((article) => <article key={article.title} className="soft-card rounded-lg p-6"><h2 className="text-2xl font-black text-foreground">{article.title}</h2><p className="mt-3 text-muted-foreground">{article.dek}</p></article>)}</div></section></PageShell>; }

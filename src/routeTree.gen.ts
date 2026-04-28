@@ -9,14 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TeamRouteImport } from './routes/team'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ReturnsRouteImport } from './routes/returns'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as NewPatientsRouteImport } from './routes/new-patients'
 import { Route as NewArrivalsRouteImport } from './routes/new-arrivals'
-import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DentalInformationRouteImport } from './routes/dental-information'
 import { Route as DealsRouteImport } from './routes/deals'
@@ -25,7 +21,6 @@ import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as BrandsRouteImport } from './routes/brands'
-import { Route as BookRouteImport } from './routes/book'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AccessibilityRouteImport } from './routes/accessibility'
 import { Route as IndexRouteImport } from './routes/index'
@@ -35,16 +30,6 @@ import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 import { Route as ProductsRouteImport } from './routes/products.'
 import { Route as CategoriesRouteImport } from './routes/categories.'
 
-const TeamRoute = TeamRouteImport.update({
-  id: '/team',
-  path: '/team',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ReturnsRoute = ReturnsRouteImport.update({
   id: '/returns',
   path: '/returns',
@@ -60,19 +45,9 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NewPatientsRoute = NewPatientsRouteImport.update({
-  id: '/new-patients',
-  path: '/new-patients',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const NewArrivalsRoute = NewArrivalsRouteImport.update({
   id: '/new-arrivals',
   path: '/new-arrivals',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LocationsRoute = LocationsRouteImport.update({
-  id: '/locations',
-  path: '/locations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -113,11 +88,6 @@ const CartRoute = CartRouteImport.update({
 const BrandsRoute = BrandsRouteImport.update({
   id: '/brands',
   path: '/brands',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookRoute = BookRouteImport.update({
-  id: '/book',
-  path: '/book',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountRoute = AccountRouteImport.update({
@@ -165,7 +135,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accessibility': typeof AccessibilityRoute
   '/account': typeof AccountRoute
-  '/book': typeof BookRoute
   '/brands': typeof BrandsRoute
   '/cart': typeof CartRoute
   '/categories': typeof CategoriesRouteWithChildren
@@ -174,14 +143,10 @@ export interface FileRoutesByFullPath {
   '/deals': typeof DealsRoute
   '/dental-information': typeof DentalInformationRoute
   '/faq': typeof FaqRoute
-  '/locations': typeof LocationsRouteWithChildren
   '/new-arrivals': typeof NewArrivalsRoute
-  '/new-patients': typeof NewPatientsRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/returns': typeof ReturnsRoute
-  '/services': typeof ServicesRouteWithChildren
-  '/team': typeof TeamRouteWithChildren
   '/categories/': typeof CategoriesRoute
   '/products/': typeof ProductsRoute
   '/locations/$slug': typeof LocationsSlugRoute
@@ -192,7 +157,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accessibility': typeof AccessibilityRoute
   '/account': typeof AccountRoute
-  '/book': typeof BookRoute
   '/brands': typeof BrandsRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
@@ -200,14 +164,10 @@ export interface FileRoutesByTo {
   '/deals': typeof DealsRoute
   '/dental-information': typeof DentalInformationRoute
   '/faq': typeof FaqRoute
-  '/locations': typeof LocationsRouteWithChildren
   '/new-arrivals': typeof NewArrivalsRoute
-  '/new-patients': typeof NewPatientsRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/returns': typeof ReturnsRoute
-  '/services': typeof ServicesRouteWithChildren
-  '/team': typeof TeamRouteWithChildren
   '/categories': typeof CategoriesRoute
   '/products': typeof ProductsRoute
   '/locations/$slug': typeof LocationsSlugRoute
@@ -219,7 +179,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/accessibility': typeof AccessibilityRoute
   '/account': typeof AccountRoute
-  '/book': typeof BookRoute
   '/brands': typeof BrandsRoute
   '/cart': typeof CartRoute
   '/categories': typeof CategoriesRouteWithChildren
@@ -228,14 +187,10 @@ export interface FileRoutesById {
   '/deals': typeof DealsRoute
   '/dental-information': typeof DentalInformationRoute
   '/faq': typeof FaqRoute
-  '/locations': typeof LocationsRouteWithChildren
   '/new-arrivals': typeof NewArrivalsRoute
-  '/new-patients': typeof NewPatientsRoute
   '/privacy': typeof PrivacyRoute
   '/resources': typeof ResourcesRoute
   '/returns': typeof ReturnsRoute
-  '/services': typeof ServicesRouteWithChildren
-  '/team': typeof TeamRouteWithChildren
   '/categories/': typeof CategoriesRoute
   '/products/': typeof ProductsRoute
   '/locations/$slug': typeof LocationsSlugRoute
@@ -248,7 +203,6 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility'
     | '/account'
-    | '/book'
     | '/brands'
     | '/cart'
     | '/categories'
@@ -257,14 +211,10 @@ export interface FileRouteTypes {
     | '/deals'
     | '/dental-information'
     | '/faq'
-    | '/locations'
     | '/new-arrivals'
-    | '/new-patients'
     | '/privacy'
     | '/resources'
     | '/returns'
-    | '/services'
-    | '/team'
     | '/categories/'
     | '/products/'
     | '/locations/$slug'
@@ -275,7 +225,6 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility'
     | '/account'
-    | '/book'
     | '/brands'
     | '/cart'
     | '/checkout'
@@ -283,14 +232,10 @@ export interface FileRouteTypes {
     | '/deals'
     | '/dental-information'
     | '/faq'
-    | '/locations'
     | '/new-arrivals'
-    | '/new-patients'
     | '/privacy'
     | '/resources'
     | '/returns'
-    | '/services'
-    | '/team'
     | '/categories'
     | '/products'
     | '/locations/$slug'
@@ -301,7 +246,6 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility'
     | '/account'
-    | '/book'
     | '/brands'
     | '/cart'
     | '/categories'
@@ -310,14 +254,10 @@ export interface FileRouteTypes {
     | '/deals'
     | '/dental-information'
     | '/faq'
-    | '/locations'
     | '/new-arrivals'
-    | '/new-patients'
     | '/privacy'
     | '/resources'
     | '/returns'
-    | '/services'
-    | '/team'
     | '/categories/'
     | '/products/'
     | '/locations/$slug'
@@ -329,7 +269,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessibilityRoute: typeof AccessibilityRoute
   AccountRoute: typeof AccountRoute
-  BookRoute: typeof BookRoute
   BrandsRoute: typeof BrandsRoute
   CartRoute: typeof CartRoute
   CategoriesRoute: typeof CategoriesRouteWithChildren
@@ -338,33 +277,15 @@ export interface RootRouteChildren {
   DealsRoute: typeof DealsRoute
   DentalInformationRoute: typeof DentalInformationRoute
   FaqRoute: typeof FaqRoute
-  LocationsRoute: typeof LocationsRouteWithChildren
   NewArrivalsRoute: typeof NewArrivalsRoute
-  NewPatientsRoute: typeof NewPatientsRoute
   PrivacyRoute: typeof PrivacyRoute
   ResourcesRoute: typeof ResourcesRoute
   ReturnsRoute: typeof ReturnsRoute
-  ServicesRoute: typeof ServicesRouteWithChildren
-  TeamRoute: typeof TeamRouteWithChildren
   ProductsRoute: typeof ProductsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/team': {
-      id: '/team'
-      path: '/team'
-      fullPath: '/team'
-      preLoaderRoute: typeof TeamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/returns': {
       id: '/returns'
       path: '/returns'
@@ -386,25 +307,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/new-patients': {
-      id: '/new-patients'
-      path: '/new-patients'
-      fullPath: '/new-patients'
-      preLoaderRoute: typeof NewPatientsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/new-arrivals': {
       id: '/new-arrivals'
       path: '/new-arrivals'
       fullPath: '/new-arrivals'
       preLoaderRoute: typeof NewArrivalsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/locations': {
-      id: '/locations'
-      path: '/locations'
-      fullPath: '/locations'
-      preLoaderRoute: typeof LocationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -461,13 +368,6 @@ declare module '@tanstack/react-router' {
       path: '/brands'
       fullPath: '/brands'
       preLoaderRoute: typeof BrandsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/book': {
-      id: '/book'
-      path: '/book'
-      fullPath: '/book'
-      preLoaderRoute: typeof BookRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account': {
@@ -541,45 +441,10 @@ const CategoriesRouteWithChildren = CategoriesRoute._addFileChildren(
   CategoriesRouteChildren,
 )
 
-interface LocationsRouteChildren {
-  LocationsSlugRoute: typeof LocationsSlugRoute
-}
-
-const LocationsRouteChildren: LocationsRouteChildren = {
-  LocationsSlugRoute: LocationsSlugRoute,
-}
-
-const LocationsRouteWithChildren = LocationsRoute._addFileChildren(
-  LocationsRouteChildren,
-)
-
-interface ServicesRouteChildren {
-  ServicesSlugRoute: typeof ServicesSlugRoute
-}
-
-const ServicesRouteChildren: ServicesRouteChildren = {
-  ServicesSlugRoute: ServicesSlugRoute,
-}
-
-const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
-  ServicesRouteChildren,
-)
-
-interface TeamRouteChildren {
-  TeamDoctorRoute: typeof TeamDoctorRoute
-}
-
-const TeamRouteChildren: TeamRouteChildren = {
-  TeamDoctorRoute: TeamDoctorRoute,
-}
-
-const TeamRouteWithChildren = TeamRoute._addFileChildren(TeamRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessibilityRoute: AccessibilityRoute,
   AccountRoute: AccountRoute,
-  BookRoute: BookRoute,
   BrandsRoute: BrandsRoute,
   CartRoute: CartRoute,
   CategoriesRoute: CategoriesRouteWithChildren,
@@ -588,14 +453,10 @@ const rootRouteChildren: RootRouteChildren = {
   DealsRoute: DealsRoute,
   DentalInformationRoute: DentalInformationRoute,
   FaqRoute: FaqRoute,
-  LocationsRoute: LocationsRouteWithChildren,
   NewArrivalsRoute: NewArrivalsRoute,
-  NewPatientsRoute: NewPatientsRoute,
   PrivacyRoute: PrivacyRoute,
   ResourcesRoute: ResourcesRoute,
   ReturnsRoute: ReturnsRoute,
-  ServicesRoute: ServicesRouteWithChildren,
-  TeamRoute: TeamRouteWithChildren,
   ProductsRoute: ProductsRoute,
 }
 export const routeTree = rootRouteImport
