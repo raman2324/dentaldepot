@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { FreeShippingProgress, PageShell, ProductCard, ProductGlyph, QuantitySelector } from "@/components/dental/shared";
 import { products, store } from "@/data/dental";
 
-export const Route = createFileRoute("/products/")({
+export const Route = createFileRoute("/products/$slug")({
   head: ({ params }) => { const product = products.find((item) => item.slug === params.slug); return { meta: [{ title: `${product?.name ?? "Product"} | Dental Depot` }, { name: "description", content: product?.description ?? "Brand-name oral-care product details." }, { property: "og:title", content: product?.name ?? "Dental Depot Product" }, { property: "og:description", content: product?.description ?? "Shop brand-name oral-care products." }] }; },
   component: ProductPage,
 });
