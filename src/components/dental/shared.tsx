@@ -3,6 +3,14 @@ import { BadgeCheck, ChevronDown, ChevronRight, CircleDollarSign, CreditCard, He
 
 import { Button } from "@/components/ui/button";
 import { brands, categories, categoryNav, products, store } from "@/data/dental";
+import dentureRepairImage from "@/assets/product-denture-repair-kit.jpg";
+import electricBrushImage from "@/assets/product-electric-brush.jpg";
+import flossRollImage from "@/assets/product-floss-roll.jpg";
+import flossToolsImage from "@/assets/product-floss-tools.jpg";
+import kidsDentalImage from "@/assets/product-kids-dental-set.jpg";
+import mouthwashImage from "@/assets/product-mouthwash-rinse.jpg";
+import nightGuardImage from "@/assets/product-night-guard.jpg";
+import toothbrushHolderImage from "@/assets/product-toothbrush-holder.jpg";
 
 export function SkipToContent() {
   return <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-foreground">Skip to main content</a>;
@@ -33,12 +41,40 @@ export function ProductGlyph({ type = "box", className = "" }: { type?: string; 
   return <div className={`product-art grid aspect-square place-items-center rounded-md border ${className}`}><span className="text-5xl font-black text-primary/80" aria-hidden="true">{glyph}</span></div>;
 }
 
+const productImages: Record<string, string> = {
+  box: dentureRepairImage,
+  breath: mouthwashImage,
+  brush: toothbrushHolderImage,
+  denture: dentureRepairImage,
+  dollar: flossRollImage,
+  dry: mouthwashImage,
+  electric: electricBrushImage,
+  floss: flossToolsImage,
+  guard: nightGuardImage,
+  gum: flossToolsImage,
+  holder: toothbrushHolderImage,
+  irrigator: electricBrushImage,
+  kids: kidsDentalImage,
+  med: mouthwashImage,
+  new: electricBrushImage,
+  ortho: flossToolsImage,
+  repair: dentureRepairImage,
+  rinse: mouthwashImage,
+  roll: flossRollImage,
+  tongue: mouthwashImage,
+  xylitol: kidsDentalImage,
+};
+
+export function ProductImage({ type = "box", alt, className = "" }: { type?: string; alt: string; className?: string }) {
+  return <img src={productImages[type] ?? dentureRepairImage} alt={alt} width={1024} height={1024} loading="lazy" className={`aspect-square w-full rounded-md border object-cover ${className}`} />;
+}
+
 export function ProductCard({ product = products[0], compact = false }: { product?: (typeof products)[number]; compact?: boolean }) {
-  return <article className="soft-card lift-card group flex h-full flex-col overflow-hidden rounded-lg"><Link to="/products/$slug" params={{ slug: product.slug }} className="block bg-secondary p-4"><ProductGlyph type={product.art} /><span className="sr-only">View {product.name}</span></Link><div className="flex flex-1 flex-col p-4"><p className="text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">{product.brand}</p><h3 className="mt-2 min-h-12 text-base font-extrabold leading-snug text-foreground"><Link to="/products/$slug" params={{ slug: product.slug }}>{product.name}</Link></h3><div className="mt-2 flex items-center gap-1 text-sm"><span className="flex text-[var(--warn-600)]" aria-label={`${product.rating} star rating`}>{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-4 fill-current" />)}</span><span className="text-muted-foreground">({product.reviews})</span></div><div className="mt-3 flex flex-wrap items-center gap-2"><span className="text-lg font-black text-foreground">${product.price.toFixed(2)}</span>{product.msrp && <span className="text-sm text-muted-foreground line-through">${product.msrp.toFixed(2)}</span>}{product.sale && <span className="rounded-full bg-warm px-2 py-1 text-xs font-black text-destructive">SALE</span>}</div><p className={`mt-2 text-sm font-bold ${product.stock.includes("Low") ? "text-[var(--warn-600)]" : "text-[var(--success-700)]"}`}>{product.stock}</p>{!compact && <Button className="mt-4 w-full md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">Add to cart</Button>}</div></article>;
+  return <article className="soft-card lift-card group flex h-full flex-col overflow-hidden rounded-lg"><Link to="/products/$slug" params={{ slug: product.slug }} className="block bg-secondary p-4"><ProductImage type={product.art} alt={product.name} /><span className="sr-only">View {product.name}</span></Link><div className="flex flex-1 flex-col p-4"><p className="text-xs font-black uppercase tracking-[0.14em] text-muted-foreground">{product.brand}</p><h3 className="mt-2 min-h-12 text-base font-extrabold leading-snug text-foreground"><Link to="/products/$slug" params={{ slug: product.slug }}>{product.name}</Link></h3><div className="mt-2 flex items-center gap-1 text-sm"><span className="flex text-[var(--warn-600)]" aria-label={`${product.rating} star rating`}>{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-4 fill-current" />)}</span><span className="text-muted-foreground">({product.reviews})</span></div><div className="mt-3 flex flex-wrap items-center gap-2"><span className="text-lg font-black text-foreground">${product.price.toFixed(2)}</span>{product.msrp && <span className="text-sm text-muted-foreground line-through">${product.msrp.toFixed(2)}</span>}{product.sale && <span className="rounded-full bg-warm px-2 py-1 text-xs font-black text-destructive">SALE</span>}</div><p className={`mt-2 text-sm font-bold ${product.stock.includes("Low") ? "text-[var(--warn-600)]" : "text-[var(--success-700)]"}`}>{product.stock}</p>{!compact && <Button className="mt-4 w-full md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">Add to cart</Button>}</div></article>;
 }
 
 export function CategoryCard({ category }: { category: (typeof categories)[number] }) {
-  return <Link to="/categories/$slug" params={{ slug: category.slug }} className="soft-card lift-card group rounded-lg p-4"><ProductGlyph type={category.tone} className="bg-card" /><h3 className="mt-4 text-lg font-black text-foreground">{category.name}</h3><p className="mt-1 text-sm font-bold text-muted-foreground">{category.count} products</p><span className="mt-3 inline-flex items-center gap-1 text-sm font-extrabold text-primary">Shop category <ChevronRight className="size-4" /></span></Link>;
+  return <Link to="/categories/$slug" params={{ slug: category.slug }} className="soft-card lift-card group rounded-lg p-4"><ProductImage type={category.tone} alt={`${category.name} oral-care products`} className="bg-card" /><h3 className="mt-4 text-lg font-black text-foreground">{category.name}</h3><p className="mt-1 text-sm font-bold text-muted-foreground">{category.count} products</p><span className="mt-3 inline-flex items-center gap-1 text-sm font-extrabold text-primary">Shop category <ChevronRight className="size-4" /></span></Link>;
 }
 
 export function BrandGrid() {
