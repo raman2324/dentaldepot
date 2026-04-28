@@ -25,8 +25,12 @@ import { Route as BrandsRouteImport } from './routes/brands'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AccessibilityRouteImport } from './routes/accessibility'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TeamDoctorRouteImport } from './routes/team.$doctor'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as LocationsSlugRouteImport } from './routes/locations.$slug'
 import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
+import { Route as ProductsRouteImport } from './routes/products.'
 
 const ReviewsRoute = ReviewsRouteImport.update({
   id: '/reviews',
@@ -108,15 +112,35 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamDoctorRoute = TeamDoctorRouteImport.update({
+  id: '/team/$doctor',
+  path: '/team/$doctor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
   id: '/products/$slug',
   path: '/products/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsSlugRoute = LocationsSlugRouteImport.update({
+  id: '/locations/$slug',
+  path: '/locations/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => CategoriesRoute,
+} as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -136,8 +160,12 @@ export interface FileRoutesByFullPath {
   '/resources': typeof ResourcesRoute
   '/returns': typeof ReturnsRoute
   '/reviews': typeof ReviewsRoute
+  '/products/': typeof ProductsRoute
   '/categories/$slug': typeof CategoriesSlugRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/team/$doctor': typeof TeamDoctorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -156,8 +184,12 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesRoute
   '/returns': typeof ReturnsRoute
   '/reviews': typeof ReviewsRoute
+  '/products': typeof ProductsRoute
   '/categories/$slug': typeof CategoriesSlugRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/team/$doctor': typeof TeamDoctorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -177,8 +209,12 @@ export interface FileRoutesById {
   '/resources': typeof ResourcesRoute
   '/returns': typeof ReturnsRoute
   '/reviews': typeof ReviewsRoute
+  '/products/': typeof ProductsRoute
   '/categories/$slug': typeof CategoriesSlugRoute
+  '/locations/$slug': typeof LocationsSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/team/$doctor': typeof TeamDoctorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -199,8 +235,12 @@ export interface FileRouteTypes {
     | '/resources'
     | '/returns'
     | '/reviews'
+    | '/products/'
     | '/categories/$slug'
+    | '/locations/$slug'
     | '/products/$slug'
+    | '/services/$slug'
+    | '/team/$doctor'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -219,8 +259,12 @@ export interface FileRouteTypes {
     | '/resources'
     | '/returns'
     | '/reviews'
+    | '/products'
     | '/categories/$slug'
+    | '/locations/$slug'
     | '/products/$slug'
+    | '/services/$slug'
+    | '/team/$doctor'
   id:
     | '__root__'
     | '/'
@@ -239,8 +283,12 @@ export interface FileRouteTypes {
     | '/resources'
     | '/returns'
     | '/reviews'
+    | '/products/'
     | '/categories/$slug'
+    | '/locations/$slug'
     | '/products/$slug'
+    | '/services/$slug'
+    | '/team/$doctor'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -260,7 +308,11 @@ export interface RootRouteChildren {
   ResourcesRoute: typeof ResourcesRoute
   ReturnsRoute: typeof ReturnsRoute
   ReviewsRoute: typeof ReviewsRoute
+  ProductsRoute: typeof ProductsRoute
+  LocationsSlugRoute: typeof LocationsSlugRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
+  TeamDoctorRoute: typeof TeamDoctorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -377,11 +429,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team/$doctor': {
+      id: '/team/$doctor'
+      path: '/team/$doctor'
+      fullPath: '/team/$doctor'
+      preLoaderRoute: typeof TeamDoctorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/products/$slug'
       fullPath: '/products/$slug'
       preLoaderRoute: typeof ProductsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations/$slug': {
+      id: '/locations/$slug'
+      path: '/locations/$slug'
+      fullPath: '/locations/$slug'
+      preLoaderRoute: typeof LocationsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/categories/$slug': {
@@ -390,6 +463,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/categories/$slug'
       preLoaderRoute: typeof CategoriesSlugRouteImport
       parentRoute: typeof CategoriesRoute
+    }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -423,7 +503,11 @@ const rootRouteChildren: RootRouteChildren = {
   ResourcesRoute: ResourcesRoute,
   ReturnsRoute: ReturnsRoute,
   ReviewsRoute: ReviewsRoute,
+  ProductsRoute: ProductsRoute,
+  LocationsSlugRoute: LocationsSlugRoute,
   ProductsSlugRoute: ProductsSlugRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
+  TeamDoctorRoute: TeamDoctorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
