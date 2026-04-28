@@ -1,0 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { PageShell } from "@/components/dental/shared";
+export const Route = createFileRoute("/returns")({ head: () => ({ meta: [{ title: "Return Policy | Dental Depot" }, { name: "description", content: "Dental Depot returns and refunds policy for unopened oral-care items." }, { property: "og:title", content: "Return Policy" }, { property: "og:description", content: "Returns and refunds for unopened oral-care products." }] }), component: Page });
+function Page() { return <PageShell><section className="container-care max-w-3xl py-14"><p className="eyebrow">Return policy</p><h1 className="mt-3 text-5xl font-black">30-day returns on unopened items.</h1><p className="mt-6 text-lg leading-8 text-muted-foreground">For safety, opened oral-care products cannot be returned. If an item arrives damaged or incorrect, contact us and we will make it right.</p></section></PageShell>; }
