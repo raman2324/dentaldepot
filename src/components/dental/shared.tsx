@@ -33,6 +33,7 @@ import kidsDentalImage from "@/assets/product-kids-dental-set.jpg";
 import mouthwashImage from "@/assets/product-mouthwash-rinse.jpg";
 import nightGuardImage from "@/assets/product-night-guard.jpg";
 import toothbrushHolderImage from "@/assets/product-toothbrush-holder.jpg";
+import dentalDepotLogo from "@/assets/dental-depot-logo.png";
 
 export function SkipToContent() {
   return (
@@ -48,12 +49,17 @@ export function SkipToContent() {
 export function Logo({ inverted = false }: { inverted?: boolean }) {
   return (
     <span
-      className="inline-flex items-center gap-2 rounded-md bg-card px-3 py-2 shadow-soft"
+      className="inline-flex items-center gap-3 rounded-md bg-card px-3 py-2 shadow-soft"
       aria-label={`${store.name} home`}
     >
-      <span className="grid size-8 place-items-center rounded-sm bg-accent text-xs font-black text-accent-foreground">
-        DD
-      </span>
+      <img
+        src={dentalDepotLogo}
+        alt=""
+        width={48}
+        height={48}
+        className="size-10 rounded-full object-contain"
+        aria-hidden="true"
+      />
       <span className="text-xl font-black leading-none">
         <span className="text-[var(--brand-maroon-800)]">Dental</span>{" "}
         <span className={inverted ? "text-[var(--ink-900)]" : "text-foreground"}>Depot</span>
