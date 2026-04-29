@@ -39,6 +39,8 @@ export const Route = createRootRoute({
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Dental Depot" },
       { name: "twitter:description", content: "Brand-name oral-care products, dentist-recommended supplies, and practical customer care from Dental Depot." },
+            { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/43ba3e45-9634-4e9e-9300-026649c01826/id-preview-0354d201--1d1b0c94-43bc-4245-a700-4b57ba916fab.lovable.app-1777471736851.png" },
+            { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/43ba3e45-9634-4e9e-9300-026649c01826/id-preview-0354d201--1d1b0c94-43bc-4245-a700-4b57ba916fab.lovable.app-1777471736851.png" },
           ],
     links: [
       {
