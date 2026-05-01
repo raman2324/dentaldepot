@@ -1,6 +1,6 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 
-import appCss from "../styles.css?url";
+import "../styles.css";
 
 function NotFoundComponent() {
   return (
@@ -25,48 +25,9 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Dental Depot" },
-      { name: "description", content: "Brand-name oral-care products, dentist-recommended supplies, and practical customer care from Dental Depot." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Dental Depot" },
-      { property: "og:description", content: "Brand-name oral-care products, dentist-recommended supplies, and practical customer care from Dental Depot." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Dental Depot" },
-      { name: "twitter:description", content: "Brand-name oral-care products, dentist-recommended supplies, and practical customer care from Dental Depot." },
-            { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/43ba3e45-9634-4e9e-9300-026649c01826/id-preview-0354d201--1d1b0c94-43bc-4245-a700-4b57ba916fab.lovable.app-1777471736851.png" },
-            { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/43ba3e45-9634-4e9e-9300-026649c01826/id-preview-0354d201--1d1b0c94-43bc-4245-a700-4b57ba916fab.lovable.app-1777471736851.png" },
-          ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   return <Outlet />;
